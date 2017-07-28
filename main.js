@@ -20,9 +20,9 @@ function question1 () {
     sum += prices[i];
   }
 
-  let avg = sum/prices.length;
+  let avg = Math.round(sum)/prices.length;
 
-  console.log(avg);
+  console.log("The average price is " +"$" + avg);
 }
 
 
@@ -46,11 +46,10 @@ let items=[];
 // 3: Which item has a "GBP" currency code? Display it's name and price.
 function question3 () {
   // Answer:
-  let gbp ="";
 
   for(let i=0; i<data.length; i++){
     if (data[i].currency_code === "GBP"){
-      console.log(data[i].title + " costs " + data[i].price)
+      console.log(data[i].title + " costs " + data[i].price + " " + "pounds.")
     }
   }
 }
@@ -58,25 +57,71 @@ function question3 () {
 // 4: Display a list of all items who are made of wood.
 function question4 () {
   // Answer:
-  let wooden= [];
   for (let i=0; i< data.length; i++){
-    if (data[i].materials === "wood"){
-      wooden.push(data[i].title);
-    }
-  }
-  console.log(wooden);
-}
 
+      for ( let m=0; m < data[i].materials.length; m++){
+        if (data[i].materials[m] === "wood"){
+        console.log(data[i].title + " " + "is made of wood");
+        }
+      }
+    }
+
+}
 
 // 5: Which items are made of eight or more materials?
 //    Display the name, number of items and the items it is made of.
 function question5 () {
   // Answer:
+
+  for (let i=0; i<data.length; i++){
+    if ( data[i].materials.length>= 8){
+      console.log( data[i].title + " " + "has " + data[i].materials.length + " materials.");
+
+    for (let m = 0; m < data[i].materials.length; m++){
+      console.log("-"+ data[i].materials[m]);
+      }
+    }
+  }
 }
+
 
 
 // 6: How many items were made by their sellers?
 // Answer:
 function question6 () {
   // Answer:
+  let homeMade = [];
+  for (let i=0; i< data.length; i++){
+    if (data[i].who_made === "i_did"){
+      homeMade.push(data[i].who_made)
+    }
+  }
+    console.log(homeMade.length + " " + "items were made by the sellers.");
+}
+
+// Supplemental:
+
+//List all materials in the dataset in a single array (no duplicates).
+
+function question7 () {
+
+let materialsTotal = [];
+
+for (let i=0; i<data.length; i++){
+  for (let m=0; m<data[i].materials.length; m++){
+    if ( data[i].materials !== data[i].materials[m]){
+      materialsTotal.push( data[i].materials[m]);
+
+      materialsTotal.sort();
+
+      for (let s=0; s<materialsTotal.length; s++){
+        if(materialsTotal[s] == materialsTotal[s+1]){
+          materialsTotal.splice(s,1);
+        }
+      }
+    }
+  }
+}
+console.log(materialsTotal);
+
 }

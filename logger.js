@@ -13,3 +13,4 @@ runAnswer(3, question3);
 runAnswer(4, question4);
 runAnswer(5, question5);
 runAnswer(6, question6);
+runAnswer(7, question7);
